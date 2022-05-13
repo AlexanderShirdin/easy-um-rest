@@ -1,7 +1,6 @@
 package ru.easyum.rest.configuration;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
