@@ -37,7 +37,7 @@ public class ConfigurationApp {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("ru.easyum.rest.entity");
         Properties hibernateProperties = new Properties();
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto","create");
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto","validate");
         hibernateProperties.setProperty("hibernate.dialect","org.hibernate.dialect.PostgreSQL94Dialect");
         hibernateProperties.setProperty("hibernate.show_sql","true");
         hibernateProperties.setProperty("hibernate.format_sql","true");

@@ -17,7 +17,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     @Override
     public List<Employee> findAllEmployee() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("select from Employee", Employee.class).getResultList();
+        return session.createQuery("from Employee", Employee.class).getResultList();
     }
 
     @Override

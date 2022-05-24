@@ -1,8 +1,12 @@
 package ru.easyum.rest.controllers;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.easyum.rest.entity.Employee;
+import ru.easyum.rest.exception.EmployeeNotFoundException;
+import ru.easyum.rest.payload.response.MessageError;
 import ru.easyum.rest.service.EmployeeService;
 
 import java.util.List;
@@ -15,18 +19,30 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @GetMapping("/")
-    public List<Employee> getAll() {
-        return employeeService.findAllEmployee();
+    public ResponseEntity<List<Employee>> getAll() {
+        return ResponseEntity.ok().body(employeeService.findAllEmployee());
     }
 
     @GetMapping("/{id}")
-    public Employee getById(@PathVariable Long id) {
-        return employeeService.findEmployeeById(id);
+    public ResponseEntity<Employee> getById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(employeeService.findEmployeeById(id));
     }
 
     @PostMapping("/")
-    public String add(@RequestBody Employee employee){
+    public ResponseEntity<String> add(@Valid @RequestBody Employee employee) {
         employeeService.addEmployee(employee);
-        return "OK";
+        return ResponseEntity.ok().body("Employee is added");
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> update(@Valid @RequestBody Employee employee, @PathVariable Long id) {
+        employeeService.updateEmployee(employee, id);
+        return ResponseEntity.ok().body("Employee is updated");
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        employeeService.deleteEmployeeById(id);
+        return ResponseEntity.ok().body("Employee is deleted");
     }
 }
