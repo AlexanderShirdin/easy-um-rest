@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import ru.easyum.rest.exception.EmployeeNotFoundException;
 import ru.easyum.rest.payload.response.MessageError;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,9 +35,9 @@ public class GlobalExceptionHandler {
         BindingResult bindingResult = exception.getBindingResult();
         bindingResult.getAllErrors()
                 .forEach((error) -> {
-                    String fieldNAme = ((FieldError) error).getField();
+                    String fieldName = ((FieldError) error).getField();
                     String defaultMessage = error.getDefaultMessage();
-                    errors.put(fieldNAme, defaultMessage);
+                    errors.put(fieldName, defaultMessage);
                 });
         return ResponseEntity.badRequest().body(errors);
     }

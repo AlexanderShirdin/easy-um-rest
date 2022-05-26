@@ -39,12 +39,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public void updateEmployee(Employee employee, Long id) {
-        Employee employee1 = employeeDao.findEmployeeById(id);
-        employee1.setDepartment(employee.getDepartment());
-        employee1.setFirstName(employee.getFirstName());
-        employee1.setLastName(employee.getLastName());
-        employee1.setSalary(employee.getSalary());
-        employeeDao.updateEmployee(employee1);
+        employee.setId(id);
+        employeeDao.updateEmployee(employee);
     }
 
     @Override

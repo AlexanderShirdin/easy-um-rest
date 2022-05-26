@@ -1,14 +1,12 @@
 package ru.easyum.rest.controllers;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.easyum.rest.entity.Employee;
-import ru.easyum.rest.exception.EmployeeNotFoundException;
-import ru.easyum.rest.payload.response.MessageError;
 import ru.easyum.rest.service.EmployeeService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
