@@ -4,6 +4,7 @@ import lombok.Data;
 import ru.easyum.rest.validation.EmailCheck;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -27,7 +28,6 @@ public class Employee {
     message = "Invalid Number")
     private String number;
     @EmailCheck
-    @Pattern(regexp ="^[a-zA-Z0-9_+&*-]+(\\.[a-zA-Z0-9_+&*-]+)*@([spring-]+\\.)[com]{2,7}$", message = "Invalid Email")
-    private String email;//spring.com
-
+    @Email
+    private String email; //@spring.com
 }

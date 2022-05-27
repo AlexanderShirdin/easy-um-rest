@@ -22,8 +22,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(message);
     }
 
-    @ExceptionHandler
-    public ResponseEntity<MessageError> exceptionHandler(NumberFormatException exception) {
+    @ExceptionHandler(value = NumberFormatException.class)
+    public ResponseEntity<MessageError> exceptionHandler() {
         MessageError message = new MessageError();
         message.setInfo("Invalid URL parameter id. Please enter a number to URL parameter");
         return ResponseEntity.badRequest().body(message);
