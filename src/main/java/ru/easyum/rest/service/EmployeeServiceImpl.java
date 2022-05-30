@@ -39,8 +39,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public void updateEmployee(Employee employee, Long id) {
-        employee.setId(id);
-        employeeDao.updateEmployee(employee);
+        Employee employee1 = employeeDao.findEmployeeById(id);
+        if (employee1 == null) throw new EmployeeNotFoundException("Employee with id " + id + " is not founded");
+        employee1.setFirstName(employee.getFirstName());
+        employee1.setLastName(employee.getLastName());
+        employee1.setSalary(employee.getSalary());
+        employee1.setDepartment(employee.getDepartment());
+//        employee.setId(id);
+        employeeDao.updateEmployee(employee1);
     }
 
     @Override
